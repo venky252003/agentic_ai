@@ -1,0 +1,16 @@
+langchain 
+langchain-chroma 
+langchain-openai 
+langchain-huggingface
+beautifulsoup4
+langchain-community
+faiss-cpu
+langchain-text-splitters
+langchain-experimental
+langchain-chroma
+requests
+python-dotenv
+langchainhub
+tavily-python
+gradio
+gradio_client
