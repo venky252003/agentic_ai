@@ -14,3 +14,4 @@ langchainhub
 tavily-python
 gradio
 gradio_client
+beautifulsoup4
