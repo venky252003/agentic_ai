@@ -24,3 +24,7 @@ stock_agent/__pycache__/*
 stock_agent/__pycache__
 stock_agent/.ipynb_checkpoints/*
 stock_agent/.ipynb_checkpoints
+
+# Notebooks with potential secrets - keep local only
+rag/langchain.ipynb
+chat_bot/langchain.ipynb
