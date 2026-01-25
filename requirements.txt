@@ -13,9 +13,6 @@ python-dotenv
 langchainhub
 tavily-python
 gradio
-<<<<<<< HEAD
-gradio_client
-=======
 gradio_client
 beautifulsoup4
 pypdf
@@ -98,4 +95,3 @@ yfinance==0.2.27
 finnhub-python
 plotly
 mlflow 
->>>>>>> 7e89fef0ec5b701946360947f8d17709b3858cc5

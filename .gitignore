@@ -20,3 +20,7 @@ chat_bot/.gradio/*
 chat_bot/.gradio_cache/*
 chat_bot/.gradio_cache
 chat_bot/.gradio_cache/*
+stock_agent/__pycache__/*
+stock_agent/__pycache__
+stock_agent/.ipynb_checkpoints/*
+stock_agent/.ipynb_checkpoints
