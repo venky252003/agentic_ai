@@ -16,3 +16,7 @@ dist/
 .DS_Store
 *.log
 uv.lock
+chat_bot/.gradio/*
+chat_bot/.gradio_cache/*
+chat_bot/.gradio_cache
+chat_bot/.gradio_cache/*
