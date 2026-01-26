@@ -95,3 +95,22 @@ yfinance==0.2.27
 finnhub-python
 plotly
 mlflow 
+google-ai-generativelanguage
+google-api-core
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+# google-cloud-aiplatform
+# google-cloud-bigquery
+# google-cloud-core
+# google-cloud-resource-manager
+# google-cloud-storage
+# google-crc32c
+google-generativeai
+# google-resumable-media
+# googleapis-common-protos
+# kfp
+vertexai
+protobuf
+pyarrow
