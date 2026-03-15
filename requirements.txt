@@ -114,3 +114,7 @@ google-generativeai
 vertexai
 protobuf
 pyarrow
+google-adk
+litellm
+streamlit
+load_dotenv
