@@ -1,7 +1,7 @@
 from google.adk.agents import LlmAgent
 from google.adk.tools import google_search
 from google.adk.runners import Runner
-from google.adk.sessions import InMemorySessionServices
+from google.adk.sessions import InMemorySessionService
 from google.genai import types
 from google.adk.models.lite_llm import LiteLlm
 
@@ -21,7 +21,7 @@ search_agent = LlmAgent(
     tools=[google_search])
 
 async def setup_session_and_runner():
-    session_services = InMemorySessionServices()
+    session_services = InMemorySessionService()
     session = await session_services.create_session(app_name=app_name, user_id=user_id, session_id=session_id)
     runner = Runner(agent=search_agent, app_name=app_name, session_service=session_services)
     return session, runner
