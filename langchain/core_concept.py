@@ -68,7 +68,7 @@ def new_chain():
     print(f"Generated Poem: {poem}")
 
 def demo_message_chain():
-    llm = init_chat_model(model="qwen3.5:9b", model_provider="ollama", temperature=0.9)
+    llm = init_chat_model(model="gemma4:latest", model_provider="ollama", temperature=0.9)
     output_parser = StrOutputParser()
 
     chain = [SystemMessage(content="You are a helpful assistant. Write short details on the given topic. Total world should be less than 100 words."),
