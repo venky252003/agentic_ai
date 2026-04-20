@@ -11,11 +11,16 @@ from langchain_core.runnables import (
     RunnableSequence,
     RunnableBranch
 )
+import os
 
 load_dotenv()
 
+open_router_api_key = os.getenv("OPENROUTER_API_KEY")
+
 #model = init_chat_model(model="gemma4:latest", model_provider="ollama", temperature=0.9)
-model = ChatOpenAI(model="gpt-4o-mini", temperature=0.9)
+model = init_chat_model(model="google/gemma-4-31b-it:free", model_provider="openrouter", temperature=0.9) 
+#model = ChatOpenAI(model="gpt-4o-mini", temperature=0.9)
+#model = ChatOpenAI(base_url="https://openrouter.ai/api/v1", temperature=0.7, api_key=open_router_api_key, model="google/gemma-3-27b-it:free")
 
 def demo_bot():
     prompt = ChatPromptTemplate.from_template("Summarize the following text in one sentence: {text}")
@@ -106,6 +111,38 @@ def demo_chain_branching():
         print(f"Question: {q}")
         print(f"Answer: {result}")
 
+def demo_debuging():
+    prompt = ChatPromptTemplate.from_template("Explain the concept of {topic} in simple terms.")
+    chain = prompt | model | StrOutputParser()
+
+    # Method 1: Get Config for tracing
+    print("chain input schema:", chain.input_schema.model_json_schema())
+    print("chain output schema:", chain.output_schema.model_json_schema())
+
+    # Method 2: use with_config for tracing
+    result = chain.with_config(trace=True, run_name="demo_debugging_chain").invoke({"topic": "quantum computing"})
+    print(f"Result: {result}")
+
+    # Method 3: Inspect intermediate steps
+    def log_step(x, step_name=""):
+        print(f"[{step_name}] {type(x).__name__}: {str(x)[:100]}")
+        return x    
+    
+    debug_chain = (
+        prompt
+        | RunnableLambda(lambda x: log_step(x, "after_prompt"))
+        | model
+        | RunnableLambda(lambda x: log_step(x, "after_model"))
+        | StrOutputParser()
+    )
+
+    print("\nRunning debug chain with intermediate logging:")
+    debug_result = debug_chain.invoke({"topic": "AGI in AI"})
+    print(f"Debug Result: {debug_result}")
+
 if __name__ == "__main__":
     #demo_bot()
-    demo_parallel_chain()
+    #demo_parallel_chain()
+    #demo_passthrough_chain()
+    #demo_chain_branching()
+    demo_debuging()
