@@ -39,6 +39,40 @@ def web_loader():
     print(f"Content length: {len(documents[0].page_content)} characters")
     print(f"Preview: {documents[0].page_content[:200]}...")
 
+def doc_structure():
+    doc = Document(
+        page_content="This is the content of the document.",
+        metadata={"source": "example.txt", "author": "John Doe"},
+    )
+    print("Document Content:")
+    print(f" page_content: {doc.page_content}")
+    print(f" Metadata: {doc.metadata}")
+
+def pdf_loader(path: str):
+    loader = PyPDFLoader(path)
+    documents = loader.load()
+    print(f"Loaded {len(documents)} document(s) from PDF")
+    for i, doc in enumerate(documents):
+        print(f"Document {i+1} Content:")
+        print(f" page_content: {doc.page_content[:100]}...")
+        print(f" Metadata: {doc.metadata}")
+
+def lazy_loader():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        for i in range(3):
+            path = Path(tmpdir) / f"doc_{i}.txt"
+            path.write_text(f"This is document {i}. It contains sample content.")   
+
+        loader = DirectoryLoader(tmpdir, glob="*.txt", loader_cls=TextLoader)
+        print(f"Loading documents from directory: {tmpdir}")
+        for doc in loader.lazy_load():
+            print("Document Content:", doc.page_content)
+            print("Metadata:", doc.metadata)
+
 if __name__ == "__main__":
     #load_text_file()
-    web_loader()
+    #web_loader()
+    pdf_loader("../chat_bot/Bank_Nifty_Option_Strategies_Booklet.pdf")
+    #lazy_loader()
+    #doc_structure()
+
